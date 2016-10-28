@@ -25,7 +25,7 @@ class mobile{
 		int mcolor,  seconds,  array_calculation,  n,  fl,  Ca;
 		double fsr,  ledr,  fcamr,  sims,mobile_size, display_area;
 //		int mcolor,  Wifi, hour,  minutes,  seconds,  array calculation;
-//		//custom function
+//		//custom functions
 //		double fb_area,  ss_area,  tb_area,  ,  clock_shape, ;
 //		double Data_usage,  Battery_time,  ;
 
