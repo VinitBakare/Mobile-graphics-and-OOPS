@@ -11,7 +11,8 @@
 #include <time.h>
 #include<Windows.h>
 #include <stdio.h>
-//#include<strlib.h>
+#include<dos.h>
+
 using namespace std;
 
 
@@ -21,16 +22,16 @@ class mobile{
 
 		protected:
 			double location, batra, screen_size,multi_screen, Sms, Filesize,downspeed;
-		double h,  l,  w,  dl,  dh;
-		int mcolor,  seconds,  array_calculation,  n,  fl,  Ca;
-		double fsr,  ledr,  fcamr,  sims,mobile_size, display_area;
+            double h,  l,  w,  dl,  dh;
+            int mcolor,  seconds,  array_calculation,  n,  fl,  Ca;
+            double fsr,  ledr,  fcamr,  sims,mobile_size, display_area;
 //		int mcolor,  Wifi, hour,  minutes,  seconds,  array calculation;
-//		//custom functions
+//		//custom function
 //		double fb_area,  ss_area,  tb_area,  ,  clock_shape, ;
 //		double Data_usage,  Battery_time,  ;
 
 
-			public:
+        public:
              mobile(){                   //default Constructor
 
                             location = 0;
@@ -42,16 +43,16 @@ class mobile{
                             Sms = 0;
                             mobile_size = 0;
 							display_area = 0;
-		      	 ifstream infile;
-			 	 string str;
-                 infile.open ("mobile.txt", ios::in);
-                 while(!infile.eof()) // To get you all the lines.
-                 {
-	              getline(infile,str); // Saves the line in STRING.
-	              cout<<str<<"\n"; // Prints our STRING.
-                 }
-	             infile.close();
-                    }
+                            ifstream infile;
+                            string str;
+                            infile.open ("mobile.txt", ios::in);
+                            while(!infile.eof()) // To get you all the lines.
+                             {
+                              getline(infile,str); // Saves the line in STRING.
+                              cout<<str<<"\n"; // Prints our STRING.
+                             }
+                             infile.close();
+                                }
 
                 void get_screen_size(){
                 cout <<"\nEnter the screen size \n 1)\t4 inch \n2)\t5 inch : " ;
@@ -59,12 +60,6 @@ class mobile{
 						ofstream outfile1("test.txt", ios::out | ios::app);
 				    	outfile1 << "\nThe screen size of the mobile is : "<< screen_size<<"inches\n";
 				    	outfile1.close();
-				    	for(int i=0;i<100;i++)
-				    	{
-				    		cout << '\a';
-				    		delay(100);
-						}
-				    	
 				}
 				void get_multi_screen(){
 				cout << "\nIs the mobile multi screen compatible \n1) 1 = NO: \n2) 2 = YES : " ;
@@ -72,7 +67,6 @@ class mobile{
 						ofstream outfile1("test.txt", ios::out | ios::app);
 				    	outfile1 << "\nIs the mobile multi screen " <<1<<" = NO and "<<2<<" = YES: "<< multi_screen<<"\n";
 				    	outfile1.close();
-				    	cout << '\a';
 				}
             	void get_location(){
 				cout <<"\nIs the location service On = 1 and Off = 0 : ";
@@ -112,26 +106,21 @@ class mobile{
 				    struct tm  t;
 				    char       ti[80];
 				    t = *localtime(&now);
-				    strftime(ti, sizeof(ti), "%b-%d-%Y-time-%X", &t);
+				    strftime(ti, sizeof(ti), "%X", &t);
 				    return ti;
 				}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					void display_time()
 					{
 //						initwindow(400,400);
-//						while (!kbhit())
-                            for(int i=0;i<1;i++)
-                            {
+						while (!kbhit()){
 //								    Sleep(1000);
 //								    system("Cls");
 									std::cout << "\ncurrent Time = " << currentDateTime() << std::endl;
 								   getchar();  // wait for keyboard input
 
 								}
-
 					}
 ////////////////////////////////////////////////////////////////////////////////////////
 					void get_calculator()
@@ -179,14 +168,12 @@ class mobile{
 				    	outfile1 << setw(1)<< a <<setw(2)<<opra<< setw(2)<< b<<setw(2)<<"="<<setw(2)<<result<<"\n";
 				    	outfile1.close();
 					}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////   DISPLAY		 /////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////   DISPLAY		 /////////////////////////////////////
 				void get_display_graphics()
 				{
 					    initwindow(1400,1400);
 					    setcolor(GREEN);
-					
+
 					if((screen_size == 5 )&&(multi_screen == 1))
 					{
  				////////////////////////////////////////////////////////   5inch display
@@ -216,7 +203,6 @@ class mobile{
 						line(490+250,210-150+30,490+250,490+150-20);//right
 /////////////////////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////////////////////////
 					}
 				else if((screen_size == 5 )&&(multi_screen == 2))
 					{
@@ -332,9 +318,8 @@ class mobile{
    				 	system ("PAUSE");
 
 				}
-				///////////////////////////////////////////////////////////////////////
 				//////////////////////////////////////////////////////////////////////
-// ~mobile(){};
+~mobile(){}; //destructor
 
 };
 
@@ -342,25 +327,16 @@ int main() {
 
 ////////////////////////////////////////////////////
 mobile m;
-//m.mobile(4);
 m.get_batra();
-//m.display_batra();
 m.get_downspeed();
-//m.display_downspeed();
 m.get_Filesize();
-//m.display_Filesize();
 m.get_location();
 m.get_calculator();
-//m.display_location();
 m.get_multi_screen();
-//m.display_multi_screen();
 m.get_screen_size();
-//m.display_screen_size();
-
-m.display_time();
-
 m.get_display_graphics();
-
+getch();
 return 0;
 
 }
+
